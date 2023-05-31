@@ -1,5 +1,6 @@
 # Shoping_Web
 
+```
 -src
 	-main	
 		-webapp 		- pages(페이지에 대한 jsp를 모아두는 부분 / body태그 부분만 작성 하면 된다.)
@@ -14,3 +15,4 @@
 		   		- css(css파일들을 모아두는 폴도)
 		   		- js(javascript파일들을 모아두는 폴더)
 				-image : 이미지 파일을 모아두는 폴더
+```
