@@ -17,9 +17,16 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
         <!-- 메인페이지를 위한 코드 -------------------------------------------------------------------------------->
         
+        
+      
+        
+       
+        
         <!-- CSS주입 부분 -->
         <!-- 메인 화면에 필요한 css위치를 불러와 주입-->
         <link href="resources/css/styles.css" rel="stylesheet" />
+        
+        
         
         <!-- JS주입 부분 -->
         <!-- 메인화면에 필요한 js위치를 불러와 주입 -->

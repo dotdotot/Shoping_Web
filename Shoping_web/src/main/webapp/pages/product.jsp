@@ -7,10 +7,16 @@
 <title>Insert title here</title>
 </head>
 <body>
+<!--  주로 header부분에 추가해야할 내용들 -->
  <jsp:include page="../config/header.jsp"></jsp:include>
  
  <!-- 네비게이션 바와 상단 메인 라벨이 포함 되어 있다 -->
   <jsp:include page="../config/nav.jsp"></jsp:include>
+  
+  
+<!-- 네비게이션 바 아래 배너를 보여주는 부분 -->
+<jsp:include page="../config/banner.jsp"></jsp:include>
+  
   
 <!-- Section-->
 <!-- Product details-->       
