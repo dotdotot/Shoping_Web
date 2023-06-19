@@ -1,35 +1,35 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" import="java.sql.*"%>
 <!DOCTYPE html>
 <html>
 <head>
 
-		<!-- ¸ÞÀÎÆäÀÌÁö¸¦ À§ÇÑ ÄÚµå -------------------------------------------------------------------------------->
+		<!-- ë©”ì¸íŽ˜ì´ì§€ë¥¼ ìœ„í•œ ì½”ë“œ -------------------------------------------------------------------------------->
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <!-- Favicon ¾ÆÀÌÄÜÀ» »ç¿ëÇÏ±â À§ÇØ ºÒ·¯¿Í¾ß µÈ´Ù-->
+        <!-- Favicon ì•„ì´ì½˜ì„ ì‚¬ìš©í•˜ê¸° ìœ„í•´ ë¶ˆëŸ¬ì™€ì•¼ ëœë‹¤-->
         <link rel="icon" type="image/x-icon" href="/resources/assets/favicon.ico" />
-        <!-- ºÎÆ®½ºÆ®·¦ ¾ÆÀÌÄÜÀ» »ç¿ëÇÏ±â À§ÇØ ¸µÅ¬¸¦ ´Þ¾ÆÁÖ¾î¾ß µÈ´Ù-->
+        <!-- ë¶€íŠ¸ìŠ¤íŠ¸ëž© ì•„ì´ì½˜ì„ ì‚¬ìš©í•˜ê¸° ìœ„í•´ ë§í´ë¥¼ ë‹¬ì•„ì£¼ì–´ì•¼ ëœë‹¤-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-        <!-- ºÎÆ®½ºÆ®·¦À» ºÒ·¯¿À´Â ºÎºÐ -->
+        <!-- ë¶€íŠ¸ìŠ¤íŠ¸ëž©ì„ ë¶ˆëŸ¬ì˜¤ëŠ” ë¶€ë¶„ -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
-        <!-- ¸ÞÀÎÆäÀÌÁö¸¦ À§ÇÑ ÄÚµå -------------------------------------------------------------------------------->
+        <!-- ë©”ì¸íŽ˜ì´ì§€ë¥¼ ìœ„í•œ ì½”ë“œ -------------------------------------------------------------------------------->
         
         
       
         
        
         
-        <!-- CSSÁÖÀÔ ºÎºÐ -->
-        <!-- ¸ÞÀÎ È­¸é¿¡ ÇÊ¿äÇÑ cssÀ§Ä¡¸¦ ºÒ·¯¿Í ÁÖÀÔ-->
+        <!-- CSSì£¼ìž… ë¶€ë¶„ -->
+        <!-- ë©”ì¸ í™”ë©´ì— í•„ìš”í•œ cssìœ„ì¹˜ë¥¼ ë¶ˆëŸ¬ì™€ ì£¼ìž…-->
         <link href="resources/css/styles.css" rel="stylesheet" />
         
         
         
-        <!-- JSÁÖÀÔ ºÎºÐ -->
-        <!-- ¸ÞÀÎÈ­¸é¿¡ ÇÊ¿äÇÑ jsÀ§Ä¡¸¦ ºÒ·¯¿Í ÁÖÀÔ -->
+        <!-- JSì£¼ìž… ë¶€ë¶„ -->
+        <!-- ë©”ì¸í™”ë©´ì— í•„ìš”í•œ jsìœ„ì¹˜ë¥¼ ë¶ˆëŸ¬ì™€ ì£¼ìž… -->
 		<script type="text/javascript" src="./resources/js/scripts.js"></script>
 		
 		
