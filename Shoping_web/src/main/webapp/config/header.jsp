@@ -25,6 +25,7 @@
         <!-- CSS주입 부분 -->
         <!-- 메인 화면에 필요한 css위치를 불러와 주입-->
         <link href="resources/css/styles.css" rel="stylesheet" />
+        <link href="resources/css/nav.css" rel="stylesheet" />
         
         
         
