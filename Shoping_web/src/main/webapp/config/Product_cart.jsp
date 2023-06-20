@@ -101,7 +101,7 @@
  <jsp:include page="../config/header.jsp"></jsp:include>
  
  <!-- 네비게이션 바와 상단 메인 라벨이 포함 되어 있다 -->
-  <jsp:include page="../config/nav.jsp"></jsp:include>
+  <jsp:include page="../config/login_nav.jsp"></jsp:include>
   
   
 <!-- 네비게이션 바 아래 배너를 보여주는 부분 -->
@@ -110,10 +110,11 @@
  <!--데이터베이스 호출 -->
 	  <%@ include file="../config/DB.jsp" %> 
 	  <%			  /*임시 유저 아이디 값 저장*/
-	  session.setAttribute("u_id", 1);
+	  
 		
 	  /*현재 로그인된 유저아이디의 세션을 가져와서 저장한다*/
-      int uid= (int)session.getAttribute("u_id"); %>
+	  int real_id = (int)session.getAttribute("r_id");
+     %>
 	  
 	       <!-- Product_cart 쿼리 -->
 			<%
@@ -121,7 +122,7 @@
 			  PreparedStatement pstmt =null;
 	          ResultSet rs = null;
 	          
-	          String sql = "select * from carts where user_id = '"+uid+"' "; 
+	          String sql = "select * from carts where user_id = '"+real_id+"' "; 
 	          pstmt = conn.prepareStatement(sql);
 	          rs = pstmt.executeQuery();
 	          
@@ -271,7 +272,7 @@
 	    
 	    <div align="center">
 	      <button id="check_module" type="button" class="btn btn-outline-primary btn-lg">전체상품주문!</</button>
-	      <button class="btn default footerbtn" id="footerbtn">쇼핑계속하기</</button>
+	      <button class="btn default footerbtn" id="footerbtn"><a href="Product_list.jsp">쇼핑계속하기</a></button>
 	      <span class="clearboth"></span>
 	      
 	    </div>

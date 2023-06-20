@@ -1,5 +1,16 @@
+<%@ page language="java"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
 
-<!-- í•œê¸€ì„ ì €ìž¥í•˜ê¸° ìœ„í•´ ë°˜ë“œì‹œ í•„ìš” -->
+</body>
+</html>
+<!-- ÇÑ±ÛÀ» ÀúÀåÇÏ±â À§ÇØ ¹Ýµå½Ã ÇÊ¿ä -->
 <%@page import="model.Categori"%>
 <%@ page import="model.Categori"%>
 <%@ page import="java.util.List"%>
@@ -18,7 +29,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 	<div class="container px-4 px-lg-5">
-		<a class="navbar-brand" href="#!">ì˜· ì‡¼í•‘ëª°(íŒ€1)</a>
+		<a class="navbar-brand" href="#!">¿Ê ¼îÇÎ¸ô(ÆÀ1)</a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 			data-bs-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -29,12 +40,12 @@
 			<div>
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4" style="">
 					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="../pages/main.jsp">ë©”ì¸í™”ë©´</a></li>
+						aria-current="page" href="../pages/main.jsp">¸ÞÀÎÈ­¸é</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="../pages/introduce.jsp">ì†Œê°œ</a></li>
+						href="../pages/introduce.jsp">¼Ò°³</a></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
-						role="button" data-bs-toggle="dropdown" aria-expanded="false">ì œí’ˆ</a>
+						role="button" data-bs-toggle="dropdown" aria-expanded="false">Á¦Ç°</a>
 
 						<%
 						//Class.forName("com.mysql.cj.jdbc.Driver");
@@ -46,22 +57,22 @@
 						//for (Categori category : childCategories1) {
 						//	out.println(category.getName());
 						//}
-						%> <!-- ë°ì´í„°ë² ì´ìŠ¤ ì—ì„œ ì œí’ˆ ì¹´í…Œê³ ë¦¬ë¥¼ ê°€ì§€ê³  ì™€ì„œ ë³´ì—¬ì£¼ëŠ” ë¶€ë¶„   -->
+						%> <!-- µ¥ÀÌÅÍº£ÀÌ½º ¿¡¼­ Á¦Ç° Ä«Å×°í¸®¸¦ °¡Áö°í ¿Í¼­ º¸¿©ÁÖ´Â ºÎºÐ   -->
 
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown"
 							style="width: 500px">
-							<li><a class="dropdown-item" href="../config/Product_list.jsp">ì¶”ì²œ ìƒí’ˆ</a></li>
+							<li><a class="dropdown-item" href="../config/Product_list.jsp">ÃßÃµ »óÇ°</a></li>
 							<li><hr class="dropdown-divider" /></li>
 
-							<!-- ë‚¨ìžì˜ í•˜ì˜ ë©”ë‰´ ë¶€ë¶„------------------------------------------------------------------------ -->
+							<!-- ³²ÀÚÀÇ ÇÏÀÇ ¸Þ´º ºÎºÐ------------------------------------------------------------------------ -->
 							<li>
 							<ul id="menu">
-								<li id="menu-item"><a href="#!" class="dropdown-item">ë‚¨ìž</a>
+								<li id="menu-item"><a href="#!" class="dropdown-item">³²ÀÚ</a>
 									<ul id="submenu">
 									<%
 									Class.forName("com.mysql.cj.jdbc.Driver");
 									
-									int i = 7; //ë‚¨ìž ìƒì˜ì— ëŒ€í•œ í•˜ìœ„ë¦¬ìŠ¤íŠ¸ë¥¼ ë¶ˆëŸ¬ì˜¤ëŠ” idê°’
+									int i = 7; //³²ÀÚ »óÀÇ¿¡ ´ëÇÑ ÇÏÀ§¸®½ºÆ®¸¦ ºÒ·¯¿À´Â id°ª
 
 									Categori categori = new Categori();
 									categori.categorySetting(3);
@@ -72,7 +83,7 @@
 									<li>
 									
 									
-									<!-- ë‚¨ìžì˜ ìƒì˜, í•˜ì˜ì— ëŒ€í•œ í•˜ì˜ ë©”ë‰´ë“¤ì˜ ë¦¬ìŠ¤íŠ¸ ----------------------------------------->
+									<!-- ³²ÀÚÀÇ »óÀÇ, ÇÏÀÇ¿¡ ´ëÇÑ ÇÏÀÇ ¸Þ´ºµéÀÇ ¸®½ºÆ® ----------------------------------------->
 									<ul id="menu2">
 								<li id="menu-item2"><a href="#!" class="dropdown-item">
 									<%
@@ -95,11 +106,11 @@
 									%>
 									</a></li>
 									
-									<%} i = 11; //ë‚¨ìž í•˜ì˜ì— ëŒ€í•œ í•˜ìœ„ ë¦¬ìŠ¤íŠ¸ë¥¼ ë¶ˆëŸ¬ì˜¤ëŠ” idê°’ %>
+									<%} i = 11; //³²ÀÚ ÇÏÀÇ¿¡ ´ëÇÑ ÇÏÀ§ ¸®½ºÆ®¸¦ ºÒ·¯¿À´Â id°ª %>
 									</ul></li>
 									</ul>
 									
-									<!-- ë‚¨ìžì˜ ìƒì˜, í•˜ì˜ì— ëŒ€í•œ í•˜ì˜ ë©”ë‰´ë“¤ì˜ ë¦¬ìŠ¤íŠ¸ ----------------------------------------------->
+									<!-- ³²ÀÚÀÇ »óÀÇ, ÇÏÀÇ¿¡ ´ëÇÑ ÇÏÀÇ ¸Þ´ºµéÀÇ ¸®½ºÆ® ----------------------------------------------->
 									
 									</li>
 									
@@ -107,12 +118,12 @@
 									</ul></li>
 									</ul>
 							</li>
-							<!-- ë‚¨ìžì˜ í•˜ì˜ ë©”ë‰´ ë¶€ë¶„------------------------------------------------------------------------ -->
+							<!-- ³²ÀÚÀÇ ÇÏÀÇ ¸Þ´º ºÎºÐ------------------------------------------------------------------------ -->
 							
-							<!-- ì—¬ìžì˜ í•˜ì˜ ë©”ë‰´ ë¶€ë¶„------------------------------------------------------------------------ -->
+							<!-- ¿©ÀÚÀÇ ÇÏÀÇ ¸Þ´º ºÎºÐ------------------------------------------------------------------------ -->
 									<li>
 							<ul id="menu">
-								<li id="menu-item"><a href="#!" class="dropdown-item">ì—¬ìž</a>
+								<li id="menu-item"><a href="#!" class="dropdown-item">¿©ÀÚ</a>
 									<ul id="submenu">
 									<%
 									Class.forName("com.mysql.cj.jdbc.Driver");
@@ -128,7 +139,7 @@
 									<li>
 									
 									
-									<!-- ì—¬ìžì˜ ìƒì˜, í•˜ì˜ì— ëŒ€í•œ í•˜ì˜ ë©”ë‰´ë“¤ì˜ ë¦¬ìŠ¤íŠ¸ ----------------------------------------->
+									<!-- ¿©ÀÚÀÇ »óÀÇ, ÇÏÀÇ¿¡ ´ëÇÑ ÇÏÀÇ ¸Þ´ºµéÀÇ ¸®½ºÆ® ----------------------------------------->
 									<ul id="menu2">
 								<li id="menu-item2"><a href="#!" class="dropdown-item">
 									<%
@@ -151,11 +162,11 @@
 									%>
 									</a></li>
 									
-									<%} j = 23; //ì—¬ìž í•˜ì˜ì— ëŒ€í•œ í•˜ìœ„ ë¦¬ìŠ¤íŠ¸ë¥¼ ë¶ˆëŸ¬ì˜¤ëŠ” idê°’ %>
+									<%} j = 23; //¿©ÀÚ ÇÏÀÇ¿¡ ´ëÇÑ ÇÏÀ§ ¸®½ºÆ®¸¦ ºÒ·¯¿À´Â id°ª %>
 									</ul></li>
 									</ul>
 									
-									<!-- ì—¬ìžì˜ ìƒì˜, í•˜ì˜ì— ëŒ€í•œ í•˜ì˜ ë©”ë‰´ë“¤ì˜ ë¦¬ìŠ¤íŠ¸ ----------------------------------------------->
+									<!-- ¿©ÀÚÀÇ »óÀÇ, ÇÏÀÇ¿¡ ´ëÇÑ ÇÏÀÇ ¸Þ´ºµéÀÇ ¸®½ºÆ® ----------------------------------------------->
 									
 									
 									</li>
@@ -166,7 +177,7 @@
 							</li>
 								
 							
-							<!-- ì—¬ìžì˜ í•˜ì˜ ë©”ë‰´ ë¶€ë¶„------------------------------------------------------------------------ -->
+							<!-- ¿©ÀÚÀÇ ÇÏÀÇ ¸Þ´º ºÎºÐ------------------------------------------------------------------------ -->
 
 								</ul>
 							</li>
@@ -177,37 +188,51 @@
 				<form action="../config/Product_cart.jsp" class="" style="display: block;">
 					<button class="btn btn-outline-dark" type="submit"
 						style="margin-Top: 0px; display: block; float: right;">
-						<i class="bi-cart-fill me-1"></i> ìž¥ë°”êµ¬ë‹ˆ 
+						<i class="bi-cart-fill me-1"></i> Àå¹Ù±¸´Ï 
 						
 			<%@ include file="../config/DB.jsp" %> 
 	  
 	  
-	       <!-- Product_cart ì¿¼ë¦¬ -->
+	       <!-- Product_cart Äõ¸® -->
+	      
 			<%
-			  /*ìž„ì‹œ ìœ ì € ì•„ì´ë”” ê°’ ì €ìž¥*/
-			  session.setAttribute("u_id", 1);
+			  /*ÀÓ½Ã À¯Àú ¾ÆÀÌµð °ª ÀúÀå*/
+			  Object u_id = session.getAttribute("id");
+			  String uid = (String)u_id;
+			  
+			  int real_id = (int)session.getAttribute("r_id");
+			  
+		
+			 
 			
-			  /*í˜„ìž¬ ë¡œê·¸ì¸ëœ ìœ ì €ì•„ì´ë””ì˜ ì„¸ì…˜ì„ ê°€ì ¸ì™€ì„œ ì €ìž¥í•œë‹¤*/
-		      int uid= (int)session.getAttribute("u_id");
+			  /*ÇöÀç ·Î±×ÀÎµÈ À¯Àú¾ÆÀÌµðÀÇ ¼¼¼ÇÀ» °¡Á®¿Í¼­ ÀúÀåÇÑ´Ù*/
+		      
               int cnt=0;
 			  PreparedStatement pstmt =null;
 	          ResultSet rs = null;
-	          String sql = "select * from carts where user_id = '"+uid+"' ";  
+	          String sql = "select * from carts where user_id = '"+real_id+"' ";  
 	          pstmt = conn.prepareStatement(sql);
 	          rs = pstmt.executeQuery();
 	         
 			%>
-						<%while(rs.next()){ cnt++;}%>
+						<%while(rs.next()){ 
+							
+							
+							
+							
+							
+							cnt++;}%>
 						
-						<span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+						<span class="badge bg-dark text-white ms-1 rounded-pill"><%=cnt%></span>
 						
 					</button>
 
 
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4"
 						style="margin-Top: 15px;">
-						<li class="nav-item" style=""><a class="nav-link" href="#!">ë§ˆì´íŽ˜ì´ì§€</a></li>
-						<li class="nav-item" style=""><a class="nav-link" href="../login.jsp">ë¡œê·¸ì¸</a></li>
+						<li class="nav-item" style=""><a class="nav-link" href="../logout.jsp">·Î±×¾Æ¿ô</a></li>
+						<li class="nav-item" style=""><a class="nav-link" href="#!">¸¶ÀÌÆäÀÌÁö</a></li>
+						<li class="nav-item" style=""><a class="nav-link" href=""><%=session.getAttribute("id")%>´Ô È¯¿µÇÕ´Ï´Ù!</a></li>
 					</ul>
 				</form>
 			</div>
