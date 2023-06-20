@@ -1,5 +1,9 @@
  <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.sql.*"%>
+    <%@page import="model.Categori"%>
+<%@ page import="model.Categori"%>
+<%@ page import="java.util.List"%>
+<%@ page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,9 +36,9 @@
 	
   String sql2 = "insert into carts values(?,?,?,?,?,?,?,?,?,?,?)";
   pstmt = conn.prepareStatement(sql2);
-  pstmt.setInt(1, 3 ); //임의의 유저아이디임 변경필요
+  pstmt.setInt(1, 2 ); 
   pstmt.setInt(2, product_id );
-  pstmt.setString(3,  null);
+  pstmt.setInt(3,  1); //임의의 유저아이디임 변경필요
   pstmt.setString(4,  null);
   pstmt.setString(5, null );
   pstmt.setString(6, null );

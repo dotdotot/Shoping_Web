@@ -111,12 +111,18 @@
 	  <%@ include file="../config/DB.jsp" %> 
 	  
 	  
-	       <!-- product_detail 쿼리 -->
+	       <!-- Product_cart 쿼리 -->
 			<%
-			  String id = request.getParameter("id");
+			  /*임시 유저 아이디 값 저장*/
+			  session.setAttribute("u_id", 1);
+			
+			  /*현재 로그인된 유저아이디의 세션을 가져와서 저장한다*/
+		      int uid= (int)session.getAttribute("u_id");
+		      
+			  
 			  PreparedStatement pstmt =null;
 	          ResultSet rs = null;
-	          String sql = "select * from carts ";	 
+	          String sql = "select * from carts where user_id = '"+uid+"' "; 
 	          pstmt = conn.prepareStatement(sql);
 	          rs = pstmt.executeQuery();
 	         
@@ -128,7 +134,7 @@
 	  <form>
 	    <div id="frame2">
 	      <span style="font-size:16pt; font-weight:bold;">장바구니</span>
-	      <span class="home">홈>장바구니</span>
+	      <span class="home">홈>남성의류>장바구니</span>
 	      <span></span>
 	    </div>
 	    <br/>
@@ -153,24 +159,25 @@
 	         </tr>
 	         <tr>
 	          
-	          <th><span style="text-align:center;">이미지</span>
+	          <th><span style="text-align:center;"><center>이미지</center></span>
 	          <th style="width:550px;"><span>상품 이름</span></th>
-	          <th>판매가</th>
-	          <th>수량</th>
-	          <th style="width:100px;">할인</th>
-	          <th>배송구분</th>
-	          <th>배송비</th>
-	          <th>합계</th>
-	          <th>선택</th>
+	          <th style="width:70px; text-align:center;">판매가</th>
+	          <th style="width:20px; text-align:center;">수량</th>
+	          <th style="width:70px; text-align:center;">할인</th>
+	          <th style="width:70px; text-align:center;">배송구분</th>
+	          <th style="width:70px; text-align:center;">배송비</th>
+	          <th style="width:70px; text-align:center;">합계</th>
+	          <th style="width:70px; text-align:center;">선택</th>
 	         </tr>
 	         </thead>
 	         
     <!-- Product details--> 
 	     <% while(rs.next()){
             //데이터베이스 변수 선언
-            String name="" , amount="";
+            String name="" , amount="" , image="";
             
         	  name = rs.getString("name");
+        	  image = rs.getString("image_path");
               int Amount = rs.getInt("amount");
         	  int price = rs.getInt("price");
         	  int discount = rs.getInt("discount");
@@ -185,13 +192,13 @@
 	        
 	              
 	              <td style="border-left:none; border-right:none;">
-	               <img style="width:80%;" src="#"></td>
+	               <img style="width:40%;" src="<%=image%>"></td>
 	               
 
 	               <%--제품이름 --%>
 	              <td style="text-align:left;padding-left:10px;border-left:none;font-weight:bold;"><%=name %></td>
 	              <%--제품가격 --%>
-	              <td><span style="padding-left:10px;"><%=price %></span>
+	              <td><span style="padding-left:10px; text-align:center"><%=price %></span>
 	              <%--제품수량 --%>
 	              <td style="width:80px;">
 	               <%=Amount %> 
@@ -208,9 +215,7 @@
 	            <button class="btn default" style="border-radius:3px;width:70px;margin-bottom:3px;font-size:11px;">주문하기</button>
 	          
 	            
-	            </td>
-	           
-	          
+	            </td>       
 	           </tr>
 	            <%} %>
 	         </tbody>

@@ -1,5 +1,9 @@
  <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.sql.*"%>
+    <%@page import="model.Categori"%>
+<%@ page import="model.Categori"%>
+<%@ page import="java.util.List"%>
+<%@ page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,6 +29,7 @@
 
      <!-- product_detail 쿼리 -->
 			<%
+			  
 			  String id = request.getParameter("id");
 			  PreparedStatement pstmt =null;
 	          ResultSet rs = null;
@@ -41,15 +46,15 @@
          
           <% while(rs.next()){
             //데이터베이스 변수 선언
-            String name="" , amount="";
+            String name="" , amount="" ,review="";
             
-        	  name = rs.getString("name");
+        	  review = rs.getString("");
         	  int discount = rs.getInt("discount");
         	  int price = rs.getInt("price");
         	  amount = rs.getString("amount");
         	  int Shipping=1000;
-        	  int result=price-discount+Shipping;
-        	  
+        	  int result=(price*2)-discount+Shipping;
+        	  session.setAttribute("u_id",1);
         	  %> 
                  <div class="col mb-5">
                         <div class="card h-100">                                               
@@ -58,7 +63,7 @@
                             
                                 <table border="1">
 	                             <tr><!-- 첫번째 줄 시작 이미지 -->       
-	                              <td rowspan="4" width="500px"><img class="card-img-top" src="../resources/image/sample.jpg" alt="..." /></td>                            
+	                              <td rowspan="4" width="500px"><img class="card-img-top" src="<%=rs.getString("main_image_path") %>" alt="..." /></td>                            
 	                            </tr>
                                 </table>                   
                         </div>
@@ -81,7 +86,7 @@
                                         </tr>
                                         <tr>
                                           <td>+혜택안내</td>  
-                                          <td>체크라네</td>                 
+                                          <td><%if(discount>1){ %>할인적용 상품<%}else{ %> - <%} %></td>                 
                                         </tr>
                                         <tr>
                                           <td>+배송비</td>  
