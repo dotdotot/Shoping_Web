@@ -109,22 +109,22 @@
   
  <!--데이터베이스 호출 -->
 	  <%@ include file="../config/DB.jsp" %> 
-	  
+	  <%			  /*임시 유저 아이디 값 저장*/
+	  session.setAttribute("u_id", 1);
+		
+	  /*현재 로그인된 유저아이디의 세션을 가져와서 저장한다*/
+      int uid= (int)session.getAttribute("u_id"); %>
 	  
 	       <!-- Product_cart 쿼리 -->
 			<%
-			  /*임시 유저 아이디 값 저장*/
-			  session.setAttribute("u_id", 1);
-			
-			  /*현재 로그인된 유저아이디의 세션을 가져와서 저장한다*/
-		      int uid= (int)session.getAttribute("u_id");
-		      
-			  
+
 			  PreparedStatement pstmt =null;
 	          ResultSet rs = null;
+	          
 	          String sql = "select * from carts where user_id = '"+uid+"' "; 
 	          pstmt = conn.prepareStatement(sql);
 	          rs = pstmt.executeQuery();
+	          
 	         
 			%>
 
@@ -170,24 +170,29 @@
 	          <th style="width:70px; text-align:center;">선택</th>
 	         </tr>
 	         </thead>
-	         
+	     <tbody>
     <!-- Product details--> 
-	     <% while(rs.next()){
+     
+	     <% 
+	     String name="" , amount="" , image="";
+	     int Amount=0 , price=0 , discount=0 , delivery_fee=0 , result=0 ,sum=0 , p_sum=0 , cnt=0;
+	     
+	     while(rs.next()){
             //데이터베이스 변수 선언
-            String name="" , amount="" , image="";
-            
         	  name = rs.getString("name");
         	  image = rs.getString("image_path");
-              int Amount = rs.getInt("amount");
-        	  int price = rs.getInt("price");
-        	  int discount = rs.getInt("discount");
-        	  int delivery_fee = 2500;
-        	  int result = (Amount*price)-discount+delivery_fee;
+              Amount = rs.getInt("amount");
+        	  price = rs.getInt("price");
+        	  discount = rs.getInt("discount");
+        	  delivery_fee = 2500;
+        	  result = (Amount*price)-discount+delivery_fee;
+        	  p_sum+=(price*Amount)-discount;
+        	  sum+=result;
         	
        
         	  
         	  %> 
-	         <tbody>
+	        
 	           <tr style="height:90px; background-color:#fff;">
 	        
 	              
@@ -217,20 +222,25 @@
 	            
 	            </td>       
 	           </tr>
-	            <%} %>
+	           <%
+	           cnt++;}
+	              
+	           %>
 	         </tbody>
+	  
 	      <tfoot>
 	       <tr style="height:60px;">
 	         <td colspan="5" style="border-right:none; text-align:left;padding-left:10px;">
 	          <span>[기본배송]</span>
 	       </td>
 	        <td colspan="5" style="border-right:none; text-align:right;padding-left:10px;">
-	          상품금액<span>돈</span> +<span>배송비 2500 = 합계</span>&nbsp;
-	          <span style="font-weight:bold;font-size:15pt;">0</span>
+	           <span><%=p_sum%></span> +<span><%=delivery_fee*cnt%> = 합계</span>&nbsp;
+	          <span style="font-weight:bold;font-size:15pt;"><%=sum %></span>
 	        </td>
 	    
 	      </tr>
 	      </tfoot>
+	      
 	      </table>
 	      
 	      <div style="border:solid 1px #e0e0eb; padding:15px 0">
@@ -248,9 +258,9 @@
 	        <th style="width:750px;padding:22px 0;"><span>결제 금액</span></th>
 	        </tr>
 	      <tr style="background-color:#fff;">
-	       <td style="padding:22px 0;"><span class="price">0</span>원</td>
-	       <td>+<span class="price">0</span>원</td>
-	       <td>-<span class="price">0</span>원</td>
+	       <td style="padding:22px 0;"><span class="price"><%=p_sum%></span>원</td>
+	       <td>+<span class="price"><%=delivery_fee*cnt%></span>원</td>
+	       <td>-<span class="price"><%=sum %></span>원</td>
 	     </tr>
 	    </table>
 	    <br><br>

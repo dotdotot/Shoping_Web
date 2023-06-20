@@ -174,12 +174,12 @@
 			</div>
 
 			<div style="display: block; margin-left: auto;">
-				<form class="" style="display: block;">
+				<form action="../config/Product_cart.jsp" class="" style="display: block;">
 					<button class="btn btn-outline-dark" type="submit"
 						style="margin-Top: 0px; display: block; float: right;">
 						<i class="bi-cart-fill me-1"></i> 장바구니 
 						
-							  <%@ include file="../config/DB.jsp" %> 
+			<%@ include file="../config/DB.jsp" %> 
 	  
 	  
 	       <!-- Product_cart 쿼리 -->

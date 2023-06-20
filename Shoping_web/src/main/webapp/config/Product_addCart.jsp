@@ -12,7 +12,8 @@
 <body>
 <%@ include file="../config/DB.jsp" %>
 <% 
-
+  String amt = request.getParameter("n1");
+  int amount = Integer.parseInt(amt); 
   String id = request.getParameter("id");
   if(id==null || id.trim().equals("")){
 	 // product.jsp로 되돌아간다.
@@ -30,16 +31,17 @@
 	int product_id = rs.getInt("id");
 	String product_name = rs.getString("name");
     int product_price = rs.getInt("price");
-	int product_amount = 1;
 	int discount = rs.getInt("discount");
 	String img_path = rs.getString("main_image_path");
 	
+
+	
   String sql2 = "insert into carts values(?,?,?,?,?,?,?,?,?,?,?)";
   pstmt = conn.prepareStatement(sql2);
-  pstmt.setInt(1, 2 ); 
+  pstmt.setString(1, null); 
   pstmt.setInt(2, product_id );
   pstmt.setInt(3,  1); //임의의 유저아이디임 변경필요
-  pstmt.setString(4,  null);
+  pstmt.setInt(4,  amount); //수량
   pstmt.setString(5, null );
   pstmt.setString(6, null );
   pstmt.setString(7, null);

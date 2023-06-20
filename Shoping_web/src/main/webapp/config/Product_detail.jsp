@@ -14,6 +14,11 @@
    
 </head>
 <body>
+
+
+
+
+
 <!--  주로 header부분에 추가해야할 내용들 -->
  <jsp:include page="../config/header.jsp"></jsp:include>
  
@@ -46,9 +51,8 @@
          
           <% while(rs.next()){
             //데이터베이스 변수 선언
-            String name="" , amount="" ,review="";
+            String name="" , amount="" ;
             
-        	  review = rs.getString("");
         	  int discount = rs.getInt("discount");
         	  int price = rs.getInt("price");
         	  amount = rs.getString("amount");
@@ -112,25 +116,44 @@
                                            </td>
                                            </tr>
                                            <tr>
+                                           <td>+수량<br/><br/></td>
+                                            <td>
+                                       
+                                             <!-- 오류아님 작동됨 -->
+                                            <form name="addForm" action="./Product_addCart.jsp?id=<%=rs.getString("id")%>" method="post" >
+                                            
+                                            <form autocomplete="on" name="oval" oninput="res1.value=<%=price%>*n1.value" name="addForm2" >                                       
+                                             <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" 
+                                                           class=underline type="number" name="n1" value="0" autofocus> </form>
+                                                           
+                                                         
+          
+                                            
+                                            </td>
+                                                           
+                                          
+                                           </tr>
+                                           <tr>
                                             <td><font color="gray">(최소 주문 1개 이상)</font></td>
                                             <td></td>
                                            </tr> 
                                           <tr>
-                                            <td>+총 가격</td>   
-                                            <td><%=result %>원</td>   
+                                            <td></td>   
+                                            <td></td>
+                                                   
                                            </tr>
                                       </table>
-                                      <hr style="border: solid 1px gray;">
+                                      
                                       <br>
                                       <table class="table">
                                         <tr>     
                                          <td><form action="">
                                          <button id="check_module" type="button" class="btn btn-outline-primary btn-lg" >상품구매</button>
                                           </form></td>
-                                          
+                                         
                                          <td>
-                                         <form name="addForm" action="./Product_addCart.jsp?id=<%=rs.getString("id")%>" method="post" >
-                                          <button type="button" class="btn btn-outline-primary btn-lg" onClick="addToCart()">장바구니</button>
+                                         
+                                          <button type="button" class="btn btn-outline-primary btn-lg" onClick="addToCart()">장바구니1?</button>
                                          </form>
                                          </td>
                                          <td><button type="button" class="btn btn-outline-primary btn-lg">찜 하기</button></td>
@@ -150,15 +173,21 @@
                   <div class="d-flex justify-content-center">
                  
 
-                   <h4>제품 설명 란1</h4>
+                   <h4>제품 설명</h4>
                   
                    </div>
                    
                    
            <hr style="border: solid 1px gray;">
                    <div class="col mb-5">
-                     <div class="card h-100"> 
-                     제품 이미지
+                     <div class="h-50" > 
+                     <center>               
+                        <table>
+                        <tr>
+                        <td><img class="card-img-top" src="<%=rs.getString("sub_image_path") %>"></td>
+                        </tr>
+                        </table>
+                      </center>  
                      </div>
                     </div>
                    <div class="col mb-5">
