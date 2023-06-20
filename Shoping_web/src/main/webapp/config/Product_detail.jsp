@@ -38,7 +38,8 @@
 			  String id = request.getParameter("id");
 			  PreparedStatement pstmt =null;
 	          ResultSet rs = null;
-	          String sql = "select * from products where id = '"+id+"' ";	 
+	         // String sql = "select * from products where id = '"+id+"' ";	 
+	          String sql ="select * from products as p join comments as c on p.id = c.id where p.id = '"+id+"' " ;
 	          pstmt = conn.prepareStatement(sql);
 	          rs = pstmt.executeQuery();
 	         
@@ -104,7 +105,7 @@
                                           <td>+색상-사이즈</td>
                                           <td>
                                             <form action="">
-                                             <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                                             <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" required>
                                               <option selected>- [필수] 옵션을 선택해주세요!-</option>
                                               <option value="1">1</option>
                                               <option value="2">2</option>
@@ -124,7 +125,8 @@
                                             
                                             <form autocomplete="on" name="oval" oninput="res1.value=<%=price%>*n1.value" name="addForm2" >                                       
                                              <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" 
-                                                           class=underline type="number" name="n1" value="0" autofocus> </form>
+                                                           class=underline type="number" name="n1" value="0" autofocus> 
+                                                           </form>
                                                            
                                                          
           
@@ -153,7 +155,7 @@
                                          
                                          <td>
                                          
-                                          <button type="button" class="btn btn-outline-primary btn-lg" onClick="addToCart()">장바구니1?</button>
+                                          <button type="button" class="btn btn-outline-primary btn-lg" onClick="addToCart()">장바구니</button>
                                          </form>
                                          </td>
                                          <td><button type="button" class="btn btn-outline-primary btn-lg">찜 하기</button></td>
@@ -190,23 +192,47 @@
                       </center>  
                      </div>
                     </div>
-                   <div class="col mb-5">
+                    
+                     <hr style="border: solid 1px gray;">
+                      <div class="d-flex justify-content-center">
+                        <h4>리뷰</h4>
+                   </div>
+                          <hr style="border: solid 1px gray;">
+            <div class="col mb-5">
+                    <div class="d-flex justify-content-left">
                         <div class="card h-100"> 
+                                            <table class="table">
+                        <tr>
                           
-                            <ul class="list-group">
-                              <li class="list-group-item">An item</li>
-                              <li class="list-group-item">A second item</li>
-                              <li class="list-group-item">A third item</li>
-                              <li class="list-group-item">A fourth item</li>
-                              <li class="list-group-item">And a fifth one</li>
-                            </ul>
+                          <td><%=rs.getString("user_id") %></td>
+                          <td>님의 리뷰 입니다</td>
+                          </tr>
+                          <tr>                      
+                            <td>+코맨트</td>
+                            <td> <%=rs.getString("comment") %></td>
+                            </tr>
+                            <tr>
+                            <td>별점</td>
+                             <td> <%int star=rs.getInt("star");
+                                for(int i = 0 ; i<star;i++){%>
+                                  ★
+                                <%} %></td>
+                                </tr>
+                     </table>
 
-        
+                </div>
+              </div>
             </div>
-            </div>
+            
            
-            <hr style="border: solid 1px gray;">
-            <h5>추천 의류 테스트</h5>
+           
+        
+                                 <hr style="border: solid 1px gray;">
+                      <div class="d-flex justify-content-center">
+             
+                   <h4>추천 상품</h4>
+                  
+                   </div>
             <hr style="border: solid 1px gray;">
             
           <%@ include file="Related_Products.jsp" %>
@@ -225,12 +251,13 @@
 
 <script type="text/javascript">
    function addToCart(){
-	   if(confirm("상품을 장바구니에 추가하시겠습니까?")){
-		   document.addForm.submit();
-	   }
-	   else{
-		   document.addForm.reset();
-	   }
+	
+		   if(confirm("상품을 장바구니에 추가하시겠습니까?")){
+			   document.addForm.submit();
+		   }
+		   else{
+			   document.addForm.reset();
+		   }
 	   
    }
    </script>
