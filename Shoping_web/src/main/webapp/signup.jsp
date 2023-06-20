@@ -67,7 +67,7 @@
       color: red;
       font-size: 12px;
       margin-top: 5px;
-      text-align: left;
+      text-align: center;
     }
 
     .password-requirements {
@@ -101,15 +101,15 @@
   <div class="signup-container">
     <h2 class="form-title">회원가입</h2>
     <div class="form-box">
-      <form action="/save" method="POST">
+      <form action="./save" method="POST">
         <div class="input-field">
           <label for="username">아이디</label>
           <input type="text" id="username" name="username"  required>
-          <button type="button" id="check-username-btn" class="btn">중복확인</button>
-        </div>
+          <button type="button" id="check-username-btn" onclick="checkUsername()" class="btn">중복확인</button>
+		 </div>
         <div class="input-field">
-          <label for="password">비밀번호</label>
-          <input type="password" id="password" name="password"  required>
+          <label for="pwd">비밀번호</label>
+          <input type="password" id="pwd" name="pwd"  required>
         </div>
         <p class="password-requirements">  비밀번호는 10자리 이상 20자리 이하로 입력해주세요.</p>
         <div class="input-field">
@@ -137,58 +137,81 @@
         <div class="input-field">
           <label for="address">주소</label>
           <input type="text" id="address" name="address" required>
-          <button type="button" id="search-address-btn" class="search-address-btn">주소 검색</button>
         </div>
         <div class="input-field">
           <label for="phone">전화번호</label>
-          <input type="text" id="phone" name="phone" required>
+          <input type="text" id="phone" name="phone"  placeholder="-없이 숫자만 입력" required>
         </div>
         <div class="input-field">
           <label for="gender">성별</label>
           <select id="gender" name="gender">
             <option value="male">남성</option>
             <option value="female">여성</option>
-            <option value="other">기타</option>
+          
           </select>
         </div>
         <div class="btn-container">
-          <input type="submit" value="등록" class="btn">
+          <input type="submit" value="등록" class="btn" onclick="check_rgForm()">
         </div>
       </form>
     </div>
   </div>
   <script>
-  var passwordInput = document.getElementById('password');
+  var usernameInput = document.getElementById('username');
+  var addressInput = document.getElementById('address');
+  var passwordInput = document.getElementById('pwd');
   var confirmPasswordInput = document.getElementById('confirm-password');
   var passwordMismatchMessage = document.querySelector('.password-mismatch-message');
   var passwordMatchMessage = document.querySelector('.password-match-message');
   var passwordRequirements = document.querySelector('.password-requirements');
 
-    function validatePassword() {
-    	
-    	 if (passwordInput.value.length < 10 || passwordInput.value.length > 20) {
-    	        passwordRequirements.style.color = 'red';
-    	      } else {
-    	        passwordRequirements.style.color = 'limegreen';
-    	      }
+  usernameInput.addEventListener('keyup', function(event) {
+    var charCode = event.key.charCodeAt(0);
+    if (charCode >= 97 && charCode <= 122) {
+      return true; // Allow lowercase English letters
+    } else {
+      event.preventDefault(); // Prevent input
+      return false;
+    }
+  });
 
-    	
-    	if (confirmPasswordInput.value !== passwordInput.value || passwordInput.value.length < 10 || passwordInput.value.length > 20 ) {
-    	    passwordMismatchMessage.style.display = 'block';
-    	    passwordMatchMessage.style.display = 'none';
-    	  } else {
-    	    passwordMismatchMessage.style.display = 'none';
-    	    passwordMatchMessage.style.display = 'block';
-    	  }
-      
-      }
-    // 비밀번호 입력란에 이벤트 리스너를 추가합니다
-    passwordInput.addEventListener('input', validatePassword);
+  addressInput.addEventListener('keyup', function(event) {
+    var charCode = event.key.charCodeAt(0);
+    if (charCode >= 12592 && charCode <= 12687) {
+      return true; // Allow Hangul characters
+    } else {
+      event.preventDefault(); // Prevent input
+      return false;
+    }
+  });
+	
+  
+  function validatePassword() {
+  	
+ 	 if (passwordInput.value.length < 10 || passwordInput.value.length > 20) {
+ 	        passwordRequirements.style.color = 'red';
+ 	      } else {
+ 	        passwordRequirements.style.color = 'limegreen';
+ 	      }
 
-    var emailDomainSelect = document.getElementById('email-domain-select');
-    var emailDomainInput = document.getElementById('email-domain-input');
+ 	
+ 	if (confirmPasswordInput.value !== passwordInput.value || passwordInput.value.length < 10 || passwordInput.value.length > 20 ) {
+ 	    passwordMismatchMessage.style.display = 'block';
+ 	    passwordMatchMessage.style.display = 'none';
+ 	  } else {
+ 	    passwordMismatchMessage.style.display = 'none';
+ 	    passwordMatchMessage.style.display = 'block';
+ 	  }
+   
+   }
 
-    function handleEmailDomainChange() {
+  // 비밀번호 입력란에 이벤트 리스너를 추가합니다
+  passwordInput.addEventListener('input', validatePassword);
+
+  var emailDomainSelect = document.getElementById('email-domain-select');
+  var emailDomainInput = document.getElementById('email-domain-input');
+
+  function handleEmailDomainChange() {
       if (emailDomainSelect.value === '직접입력') {
         emailDomainInput.style.display = 'inline-block';
       } else {
@@ -196,49 +219,110 @@
       }
     }
 
-    confirmPasswordInput.addEventListener('input', validatePassword);
-    emailDomainSelect.addEventListener('change', handleEmailDomainChange);
-    
-    <%-- function save(){
-		<%
-		
-		String email = request.getParameter("username");
-		String email_d=request.getParameter("email_domain");
-		String email_di=request.getParameter("email_domain_input");
-		String remail = "";
-		if(email_d != null && email_d.equals("직접입력")){
-			remail = email+"@"+email_di;
-		}else{
-			remail = email+"@"+email_d;
-		}
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		String url = "jdbc:mysql://13.209.55.246/project?characterEncoding=UTF-8&serverTimezone=UTC";
-		String id = "projectuser";
-		String pw = "projectuser";
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		conn = DriverManager.getConnection(url,id,pw);
-		
-		String sql = "insert into users(uid, pwd, name, email, phone, address, gender, updated_at, deleted_at)"
-				+"values(?,?,?,?,?,?,?,?,?,?)";
-		pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, request.getParameter("username"));
-		pstmt.setString(2, request.getParameter("username"));
-		pstmt.setString(3, request.getParameter("name"));
-		pstmt.setString(4, remail);
-		pstmt.setString(5, request.getParameter("phone"));
-		pstmt.setString(6, request.getParameter("address"));
-		pstmt.setString(7, request.getParameter("gender"));
-		pstmt.setDate(10, null);
-		pstmt.setDate(11, null);
-			
-		pstmt.executeUpdate();
-		pstmt.close();
-		conn.close();
-		response.sendRedirect("main.jsp");
-		%>  		
-  	} --%>
-   </script>
+  confirmPasswordInput.addEventListener('input', validatePassword);
+  emailDomainSelect.addEventListener('change', handleEmailDomainChange);
+
+
+  function check_rgForm() {
+    var passwordInput = document.getElementById('pwd');
+    var usernameInput = document.getElementById('uid');
+    var nameInput = document.getElementById('name');
+    var emailInput = document.getElementById('email');
+    var addressInput = document.getElementById('address');
+    var phoneInput = document.getElementById('phone');
+
+  	  if (passwordInput.value.length < 10 || passwordInput.value.length > 20) {
+  	    alert("비밀번호는 10자 이상 20자 이하로 입력해주세요.");
+  	    passwordInput.focus();
+  	    return;
+  	  }
+  	  
+  	  // 빈칸 검사
+  	  if (usernameInput.value.trim() === "") {
+  	    alert("아이디를 입력해주세요.");
+  	    usernameInput.focus();
+  	    return;
+  	  }
+  	  
+  	  if (nameInput.value.trim() === "") {
+  	    alert("이름을 입력해주세요.");
+  	    nameInput.focus();
+  	    return;
+  	  }
+  	  
+  	  if (emailInput.value.trim() === "") {
+  	    alert("이메일을 입력해주세요.");
+  	    emailInput.focus();
+  	    return;
+  	  }
+  	  
+  	  if (addressInput.value.trim() === "") {
+  	    alert("주소를 입력해주세요.");
+  	    addressInput.focus();
+  	    return;
+  	  }
+  	  
+  	  var phonePattern = /^0[0-9]{8,12}$/; // 0으로 시작하고 8자리에서 12자리 사이의 숫자
+
+  	  if (!phonePattern.test(phoneInput.value)) {
+  	    alert("전화번호는 숫자만 입력해주세요.");
+  	    phoneInput.value = ""; // 입력 필드 초기화
+  	    phoneInput.focus(); // 입력 필드에 포커스 맞춤
+  	    return;
+  	  }
+
+  	  // 모든 유효성 검사가 통과하면 폼을 제출합니다.
+  	  document.getElementById('rgForm').submit();
+  	}
+
+  confirmPasswordInput.addEventListener('input', validatePassword);
+  emailDomainSelect.addEventListener('change', handleEmailDomainChange);
+
+
+  var checkUsernameBtn = document.getElementById('check-username-btn');
+  checkUsernameBtn.addEventListener('click', checkUsername);
+
+  var rgFormSubmitBtn = document.getElementById('rgFormSubmitBtn');
+  rgFormSubmitBtn.addEventListener('click', check_rgForm);
+  
+  function checkUsername() {
+	    var usernameInput = document.getElementById('username');
+
+	    // 아이디 입력 확인
+	    if (usernameInput.value.trim() === "") {
+	        alert("아이디를 입력해주세요.");
+	        return;
+	    }
+
+	    // AJAX 요청
+	    var xhr = new XMLHttpRequest();
+	    xhr.onreadystatechange = function() {
+	    	if (xhr.readyState === XMLHttpRequest.DONE) {
+	    		  if (xhr.status === 200) {
+	    		    var response = xhr.responseText;
+	    		    if (response === "duplicate") {
+	    		      alert("다른 아이디를 사용해 주세요.");
+	    		      usernameInput.value = ""; // 아이디 입력 필드 초기화
+	    		    } else if (response === "available") {
+	    		      // 중복된 아이디가 없는 경우 처리
+	    		      // 예: 아이디 사용 가능 메시지 출력 등
+	    		      alert("사용 가능한 아이디입니다.");
+	    		    } else {
+	    		      // 기타 처리 사항
+	    		      alert("중복된 아이디 입니다.");
+	    		      usernameInput.value = "";
+	    		    }
+	    		  } else {
+	    		    // 요청 실패 처리
+	    		    alert("요청 실패");
+	    		  }
+	    		}
+	    }
+	    xhr.open("GET", "checkUsername?username=" + encodeURIComponent(usernameInput.value), true);
+	    xhr.send();
+	}
+
+</script>
 </body>
 </html>
 

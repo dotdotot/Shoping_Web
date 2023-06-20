@@ -61,13 +61,34 @@
       font-weight: bold;
     }
   </style>
+  <script>
+    function showErrorMessage() {
+      alert("로그인에 실패하였습니다.");
+    }
+    
+    function resetForm() {
+        document.getElementById("loginForm").reset();
+
+      }
+    
+    function validateForm() {
+        // 로그인 실패 시 메시지 출력
+        var loginState = '<%= request.getAttribute("loginstate") %>'; // 서블릿에서 설정한 상태값을 가져옴
+        if (loginState === "로그인 실패") {
+          showErrorMessage();
+          resetForm();
+          return false; // 폼 제출 방지
+        }
+      }
+
+  </script>
 </head>
 <body>
   <div class="header">
     <h2>1조 웹쇼핑몰 로그인</h2>
   </div>
   <div class="login-container">
-    <form action="/login" method="post">
+    <form action="./login" method="post" id="loginForm" onsubmit="return validateForm()">
       <div class="input-field">
         <input type="text" id="username" name="username" placeholder="아이디">
       </div>
@@ -83,8 +104,11 @@
       <a href="find_password.jsp" style="color: black; font-weight: bold;">비밀번호 찾기</a>
     </div>
     <div class="signup-link">
-      이 쇼핑몰에 처음이신가요? <a href="33.jsp">여기를 클릭</a>
+      이 쇼핑몰에 처음이신가요? <a href="signup.jsp">여기를 클릭</a>
     </div>
+   
   </div>
+ 
+    
 </body>
 </html>
